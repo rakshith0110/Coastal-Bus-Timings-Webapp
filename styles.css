@@ -1,0 +1,105 @@
+/* styles.css */
+
+/* Resetting default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+/* Header styles */
+header {
+    background-color: #fff01d;
+    color: #333;
+    text-align: center;
+    padding: 20px 0;
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+/* Main styles */
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+/* Destination selection styles */
+#destination-selection {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+select, button {
+    padding: 8px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+select {
+    margin-right: 10px; /* Add margin-right for select elements */
+}
+
+button {
+    background-color: #ffd31d;
+    border: none;
+    cursor: pointer;
+}
+
+/* Bus timings styles */
+#bus-timings {
+    text-align: center;
+}
+
+#bus-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#bus-table th, #bus-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+#bus-table th {
+    background-color: #ffd31d;
+}
+
+.bus-img {
+    max-width: 100px;
+    height: auto;
+}
+
+/* Footer styles */
+footer {
+    background-color: #ffd31d;
+    color: #333;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}

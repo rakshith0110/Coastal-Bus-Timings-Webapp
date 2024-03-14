@@ -3,9 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Local Bus Timings</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    just sample gitpush project
+    <header>
+        <h1>Local Bus Timings</h1>
+        <p id="current-time"></p>
+    </header>
+    <main>
+        <section id="destination-selection">
+            <h2>Choose Destinations</h2>
+            <form id="destination-form">
+                <label for="from">From:</label>
+                <select id="from" name="from" disabled>
+                    <option value="karkala" selected>Karkala</option>
+                </select>
+                <label for="to">To:</label>
+                <select id="to" name="to">
+                    <option value="moodbidri">Moodbidri</option>
+                    <option value="mangalore">Mangalore</option>
+                    <option value="udupi">Udupi</option>
+                </select>
+                <button type="submit">Show Timings</button>
+            </form>
+        </section>
+        <section id="bus-timings">
+            <h2>Bus Timings</h2>
+            <table id="bus-table">
+                <thead>
+                    <tr>
+                        <th>Serial No</th>
+                        <th>Bus Name</th>
+                        <th>Departure Time</th>
+                    </tr>
+                </thead>
+                <tbody id="bus-list">
+                    <!-- Bus timings will be added dynamically here -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Local Bus Timings</p>
+    </footer>
+    <script src="script.js"></script>
 </body>
 </html>
