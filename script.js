@@ -1,6 +1,4 @@
-// script.js
 
-// Define bus timings for each location (hour:minute)
 const busTimingsByLocation = {
     karkala: [
         "06:00", "06:30", "07:00", "07:30", "08:00", "08:30"
@@ -16,7 +14,6 @@ const busTimingsByLocation = {
     ]
 };
 
-// Function to get current time in HH:MM format
 function getCurrentTime() {
     const now = new Date();
     const hours = now.getHours().toString().padStart(2, '0');
@@ -24,40 +21,33 @@ function getCurrentTime() {
     return `${hours}:${minutes}`;
 }
 
-// Function to get selected "from" and "to" destinations
 function getSelectedDestinations() {
     const from = document.getElementById('from').value;
     const to = document.getElementById('to').value;
     return { from, to };
 }
 
-// Function to calculate bus timings based on the selected destinations
 function calculateBusTimings() {
     const { from, to } = getSelectedDestinations();
     const busTimings = busTimingsByLocation[from];
 
-    // Filter bus timings based on the selected destination
     const filteredBusTimings = busTimings.filter(timing => timing !== busTimingsByLocation[to]);
 
-    // Sort bus timings in ascending order
     filteredBusTimings.sort();
 
-    return filteredBusTimings.slice(0, 6); // Return only the first 6 bus timings
+    return filteredBusTimings.slice(0, 6);
 }
 
-// Function to update the current time and bus timings on the webpage
 function updatePage(event) {
-    event.preventDefault(); // Prevent form submission
+    event.preventDefault(); 
 
     const currentTimeElement = document.getElementById('current-time');
     const busListElement = document.getElementById('bus-list');
     const currentTime = getCurrentTime();
     const busTimings = calculateBusTimings();
 
-    // Update current time
     currentTimeElement.textContent = `Current Time: ${currentTime}`;
 
-    // Calculate and update bus timings
     busListElement.innerHTML = '';
     busTimings.forEach((timing, index) => {
         const tr = document.createElement('tr');
@@ -71,9 +61,7 @@ function updatePage(event) {
     });
 }
 
-// Add event listener to the form for submitting destination selection
 document.getElementById('destination-form').addEventListener('submit', updatePage);
 
-// Update page initially and every minute
-updatePage({ preventDefault: () => {} }); // Call updatePage with a dummy event object
-setInterval(updatePage, 60000); // Update every minute
+updatePage({ preventDefault: () => {} });
+setInterval(updatePage, 60000); 
