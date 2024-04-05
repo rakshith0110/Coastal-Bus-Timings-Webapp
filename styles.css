@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -11,7 +10,6 @@ body {
     color: #333;
 }
 
-
 header {
     background-color: #fff01d;
     color: #333;
@@ -23,7 +21,6 @@ h1 {
     margin-bottom: 10px;
 }
 
-
 main {
     padding: 20px;
 }
@@ -31,7 +28,6 @@ main {
 section {
     margin-bottom: 20px;
 }
-
 
 #destination-selection {
     text-align: center;
@@ -48,6 +44,7 @@ form {
 label {
     font-weight: bold;
     margin-right: 10px;
+    height: 30px;
 }
 
 select, button {
@@ -65,7 +62,6 @@ button {
     border: none;
     cursor: pointer;
 }
-
 
 #bus-timings {
     text-align: center;
@@ -90,7 +86,6 @@ button {
     height: auto;
 }
 
-
 footer {
     background-color: #ffd31d;
     color: #333;
@@ -100,3 +95,40 @@ footer {
     width: 100%;
     bottom: 0;
 }
+
+/* Additional styles for new columns */
+
+#bus-table th:nth-child(4),
+#bus-table td:nth-child(4),
+#bus-table th:nth-child(5),
+#bus-table td:nth-child(5) {
+    width: 15%;
+}
+
+@media (max-width: 768px) {
+    #bus-table th:nth-child(4),
+    #bus-table td:nth-child(4),
+    #bus-table th:nth-child(5),
+    #bus-table td:nth-child(5) {
+        width: auto;
+    }
+}
+
+/* Add margin between the buttons */
+.button-container button {
+    margin-right: 10px; /* Adjust the margin as needed */
+}
+#preview-map {
+    background-color: blue; /* Change the background color to blue */
+    color: white; /* Change text color to contrast with the blue background */
+}
+
+#current-time {
+    font-size: 1.0em; /* Adjust the font size as needed */
+    padding: 10px; /* Add padding around the current time */
+    background-color: #ffffff; /* Background color */
+    color: #333; /* Text color */
+    border-radius: 5px; /* Rounded corners */
+    display: inline-block; /* Display as inline block */
+}
+

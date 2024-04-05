@@ -1,25 +1,73 @@
-
 const busTimingsByLocation = {
     karkala: [
-        "06:00", "06:30", "07:00", "07:30", "08:00", "08:30"
+        { name: "Vishal", departure: "06:00", reaching: "08:00" },
+        { name: "Samgam", departure: "06:30", reaching: "08:30" },
+        { name: "Master", departure: "07:00", reaching: "09:00" },
+        { name: "Padmabika", departure: "07:30", reaching: "09:30" },
+        { name: "Sunil", departure: "08:00", reaching: "10:00" },
+        { name: "Reshma", departure: "08:30", reaching: "10:30" },
+        { name: "Varun", departure: "09:00", reaching: "11:00" },
+        { name: "Bharath", departure: "09:30", reaching: "11:30" },
+        { name: "Gloria", departure: "10:00", reaching: "12:00" },
+        { name: "Jolly", departure: "10:30", reaching: "12:30" }
     ],
     mangalore: [
-        "06:15", "06:45", "07:15", "07:45", "08:15", "08:45"
+        { name: "Vishal", departure: "06:00", reaching: "08:00" },
+        { name: "Samgam", departure: "06:30", reaching: "08:30" },
+        { name: "Master", departure: "07:00", reaching: "09:00" },
+        { name: "Padmabika", departure: "07:30", reaching: "09:30" },
+        { name: "Sunil", departure: "08:00", reaching: "10:00" },
+        { name: "Reshma", departure: "08:30", reaching: "10:30" },
+        { name: "Varun", departure: "09:00", reaching: "11:00" },
+        { name: "Bharath", departure: "09:30", reaching: "11:30" },
+        { name: "Gloria", departure: "10:00", reaching: "12:00" },
+        { name: "Jolly", departure: "10:30", reaching: "12:30" }
     ],
     moodbidri: [
-        "06:30", "07:00", "07:30", "08:00", "08:30", "09:00"
+        { name: "Reshma", departure: "06:00", reaching: "08:00" },
+        { name: "Gloria", departure: "06:30", reaching: "08:30" },
+        { name: "Bharath", departure: "07:00", reaching: "09:00" },
+        { name: "Jolly", departure: "07:30", reaching: "09:30" },
+        { name: "Varun", departure: "08:00", reaching: "10:00" },
+        { name: "Padmabika", departure: "08:30", reaching: "10:30" },
+        { name: "Master", departure: "09:00", reaching: "11:00" },
+        { name: "Samgam", departure: "09:30", reaching: "11:30" },
+        { name: "Sunil", departure: "10:00", reaching: "12:00" },
+        { name: "Vishal", departure: "10:30", reaching: "12:30" }
     ],
     udupi: [
-        "07:00", "07:30", "08:00", "08:30", "09:00", "09:30"
-    ]
+        { name: "Varun", departure: "06:00", reaching: "08:00" },
+        { name: "Bharath", departure: "06:30", reaching: "08:30" },
+        { name: "Reshma", departure: "07:00", reaching: "09:00" },
+        { name: "Samgam", departure: "07:30", reaching: "09:30" },
+        { name: "Sunil", departure: "08:00", reaching: "10:00" },
+        { name: "Bharath", departure: "08:30", reaching: "10:30" },
+        { name: "Jolly", departure: "09:00", reaching: "11:00" },
+        { name: "Vishal", departure: "09:30", reaching: "11:30" },
+        { name: "Padmabika", departure: "10:00", reaching: "12:00" },
+        { name: "Gloria", departure: "10:30", reaching: "12:30" }
+    ],
 };
 
 function getCurrentTime() {
     const now = new Date();
-    const hours = now.getHours().toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    return `${hours}:${minutes}`;
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+    let seconds = now.getSeconds();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12 || 12; // Convert to 12-hour format
+    hours = hours < 10 ? '0' + hours : hours; // Add leading zero for single digit hours
+    minutes = minutes < 10 ? '0' + minutes : minutes; // Add leading zero for single digit minutes
+    seconds = seconds < 10 ? '0' + seconds : seconds; // Add leading zero for single digit seconds
+    return `${hours}:${minutes}:${seconds} ${ampm}`;
 }
+
+function updateTime() {
+    const currentTimeElement = document.getElementById('current-time');
+    currentTimeElement.textContent = getCurrentTime();
+}
+
+setInterval(updateTime, 1000);
 
 function getSelectedDestinations() {
     const from = document.getElementById('from').value;
@@ -29,17 +77,11 @@ function getSelectedDestinations() {
 
 function calculateBusTimings() {
     const { from, to } = getSelectedDestinations();
-    const busTimings = busTimingsByLocation[from];
-
-    const filteredBusTimings = busTimings.filter(timing => timing !== busTimingsByLocation[to]);
-
-    filteredBusTimings.sort();
-
-    return filteredBusTimings.slice(0, 6);
+    return busTimingsByLocation[to];
 }
 
 function updatePage(event) {
-    event.preventDefault(); 
+    event.preventDefault();
 
     const currentTimeElement = document.getElementById('current-time');
     const busListElement = document.getElementById('bus-list');
@@ -49,19 +91,55 @@ function updatePage(event) {
     currentTimeElement.textContent = `Current Time: ${currentTime}`;
 
     busListElement.innerHTML = '';
-    busTimings.forEach((timing, index) => {
+    busTimings.forEach((bus, index) => {
         const tr = document.createElement('tr');
-        const busName = `Bus ${index + 1}`;
         tr.innerHTML = `
             <td>${index + 1}</td>
-            <td>${busName}</td>
-            <td>${timing}</td>
+            <td>${bus.name}</td>
+            <td>${bus.departure}</td>
+            <td>${bus.reaching}</td>
+            <td><button onclick="showDetails('${bus.name}', '${bus.departure}', '${bus.reaching}')">Details</button></td>
         `;
         busListElement.appendChild(tr);
     });
 }
 
-document.getElementById('destination-form').addEventListener('submit', updatePage);
+function showDetails(busName, departureTime, reachingTime) {
+    const details = `
+        <h2>${busName}</h2>
+        <p>Departure Time: ${departureTime}</p>
+        <p>Reaching Time: ${reachingTime}</p>
+    `;
 
-updatePage({ preventDefault: () => {} });
-setInterval(updatePage, 60000); 
+    const newWindow = window.open('', '_blank');
+    newWindow.document.write(details);
+}
+
+function initializePage() {
+    const form = document.getElementById('destination-form');
+    form.addEventListener('submit', updatePage);
+
+    const mapButton = document.getElementById('preview-map');
+    mapButton.addEventListener('click', previewRouteMap);
+}
+
+function previewRouteMap() {
+    const { from, to } = getSelectedDestinations();
+    let mapURL;
+
+    if (from === 'karkala' && to === 'mangalore') {
+        mapURL = 'mangloremap.html';
+    } else if (from === 'karkala' && to === 'udupi') {
+        mapURL = 'udupimap.html';
+    } else if (from === 'karkala' && to === 'moodbidri') {
+        mapURL = 'moodbidrimap.html';
+    } else {
+        console.log('No map URL defined for the selected destinations.');
+        return;
+    }
+
+    const mapWindow = window.open(mapURL, '_blank');
+    mapWindow.focus();
+}
+
+initializePage();

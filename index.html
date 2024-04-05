@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Local Bus Timings</title>
+    <title>Coastal Bus Timings</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Local Bus Timings</h1>
+        <h1>Coastal Bus Timings</h1>
         <p id="current-time"></p>
     </header>
     <main>
@@ -16,7 +16,7 @@
             <h2>Choose Destinations</h2>
             <form id="destination-form">
                 <label for="from">From:</label>
-                <select id="from" name="from" disabled>
+                <select id="from" name="from">
                     <option value="karkala" selected>Karkala</option>
                 </select>
                 <label for="to">To:</label>
@@ -26,6 +26,7 @@
                     <option value="udupi">Udupi</option>
                 </select>
                 <button type="submit">Show Timings</button>
+                <button type="button" id="preview-map">Map</button>
             </form>
         </section>
         <section id="bus-timings">
@@ -33,9 +34,11 @@
             <table id="bus-table">
                 <thead>
                     <tr>
-                        <th>Serial No</th>
+                        <th>Sl No</th>
                         <th>Bus Name</th>
                         <th>Departure Time</th>
+                        <th>Reaching Time</th>
+                        <th>More Details</th>
                     </tr>
                 </thead>
                 <tbody id="bus-list">
@@ -45,7 +48,7 @@
         </section>
     </main>
     <footer>
-        <p>&copy; 2024 Local Bus Timings</p>
+        <p>&copy; 2024 Coastal Bus Timings</p>
     </footer>
     <script src="script.js"></script>
 </body>
