@@ -15,16 +15,20 @@
         <section id="destination-selection">
             <h2>Choose Destinations</h2>
             <form id="destination-form">
-                <label for="from">From:</label>
-                <select id="from" name="from">
-                    <option value="karkala" selected>Karkala</option>
-                </select>
-                <label for="to">To:</label>
-                <select id="to" name="to">
-                    <option value="moodbidri">Moodbidri</option>
-                    <option value="mangalore">Mangalore</option>
-                    <option value="udupi">Udupi</option>
-                </select>
+                <div class="label-group">
+                    <label for="from">From:</label>
+                    <select id="from" name="from">
+                        <option value="karkala" selected>Karkala</option>
+                    </select>
+                </div>
+                <div class="label-group">
+                    <label for="to">To:</label>
+                    <select id="to" name="to">
+                        <option value="moodbidri">Moodbidri</option>
+                        <option value="mangalore">Mangalore</option>
+                        <option value="udupi">Udupi</option>
+                    </select>
+                </div>
                 <button type="submit">Show Timings</button>
                 <button type="button" id="preview-map">Map</button>
             </form>

@@ -98,22 +98,35 @@ function updatePage(event) {
             <td>${bus.name}</td>
             <td>${bus.departure}</td>
             <td>${bus.reaching}</td>
-            <td><button onclick="showDetails('${bus.name}', '${bus.departure}', '${bus.reaching}')">Details</button></td>
+            <td><button onclick="showDetails(${index})">Details</button></td>
         `;
         busListElement.appendChild(tr);
     });
 }
 
-function showDetails(busName, departureTime, reachingTime) {
-    const details = `
-        <h2>${busName}</h2>
-        <p>Departure Time: ${departureTime}</p>
-        <p>Reaching Time: ${reachingTime}</p>
-    `;
+function showDetails(index) {
+    const { from, to } = getSelectedDestinations();
+    let busDetailsPage;
 
-    const newWindow = window.open('', '_blank');
-    newWindow.document.write(details);
+    if (from === 'karkala' && to === 'mangalore') {
+        busDetailsPage = `manglore${index + 1}.html`;
+    } else if (from === 'karkala' && to === 'udupi') {
+        busDetailsPage = `udupi${index + 1}.html`;
+    } else if (from === 'karkala' && to === 'moodbidri') {
+        busDetailsPage = `moodbidri${index + 1}.html`;
+    } else {
+        console.log('Details are only available for buses from Karkala to Mangalore, Udupi, or Moodbidri.');
+        return;
+    }
+
+    if (index >= 0 && index < 10) {
+        window.open(busDetailsPage, '_blank');
+    } else {
+        console.log('Details not available for this bus.');
+    }
 }
+
+
 
 function initializePage() {
     const form = document.getElementById('destination-form');
