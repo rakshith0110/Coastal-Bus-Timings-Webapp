@@ -1,59 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coastal Bus Timings</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coastal Bus Timings</title>
+<link rel="stylesheet" href="front.css">
 </head>
 <body>
-    <header>
-        <h1>Coastal Bus Timings</h1>
-        <p id="current-time"></p>
-    </header>
-    <main>
-        <section id="destination-selection">
-            <h2>Choose Destinations</h2>
-            <form id="destination-form">
-                <div class="label-group">
-                    <label for="from">From:</label>
-                    <select id="from" name="from">
-                        <option value="karkala" selected>Karkala</option>
-                    </select>
-                </div>
-                <div class="label-group">
-                    <label for="to">To:</label>
-                    <select id="to" name="to">
-                        <option value="moodbidri">Moodbidri</option>
-                        <option value="mangalore">Mangalore</option>
-                        <option value="udupi">Udupi</option>
-                    </select>
-                </div>
-                <button type="submit">Show Timings</button>
-                <button type="button" id="preview-map">Map</button>
-            </form>
-        </section>
-        <section id="bus-timings">
-            <h2>Bus Timings</h2>
-            <table id="bus-table">
-                <thead>
-                    <tr>
-                        <th>Sl No</th>
-                        <th>Bus Name</th>
-                        <th>Departure Time</th>
-                        <th>Reaching Time</th>
-                        <th>More Details</th>
-                    </tr>
-                </thead>
-                <tbody id="bus-list">
-                    <!-- Bus timings will be added dynamically here -->
-                </tbody>
-            </table>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2024 Coastal Bus Timings</p>
-    </footer>
-    <script src="script.js"></script>
+<header>
+  <div class="menu-btn" onclick="toggleMenu()">☰ Menu</div>
+  <nav id="side-menu">
+    <ul>
+      <li><a href="#">HOME</a></li>
+      <li><a href="#">ABOUT US</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <section class="hero">
+    <div class="content-container">
+      <h1>Coastal Bus Timings</h1>
+      <p>Welcome to Coastal Bus Timings. Check out the bus timings near you.</p>
+      <a href="main.html">GET BUS TIMINGS</a>
+    </div>
+  </section>
+</main>
+<footer>
+  <p>PRY®  <a href="#">CoastalBusTimings.com</a></p>
+</footer>
+<script src="front.js"></script>
 </body>
 </html>
